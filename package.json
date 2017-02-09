@@ -2,7 +2,7 @@
   "name": "kyoku",
   "version": "0.0.6",
   "description": "A tiny app that shows iTunes current playing song on Mac menu bar",
-  "main": "app.js",
+  "main": "main.js",
   "keywords": [
     "electron-app",
     "itunes",
@@ -14,6 +14,10 @@
   "author": "Lim Chee Aun <cheeaun@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "gimme-lyrics": "^0.3.1",
+    "lyricist": "^0.1.1",
+    "node-lyrics": "^1.0.0",
+    "request": "^2.79.0",
     "user-home": "~2.0.0"
   },
   "repository": {

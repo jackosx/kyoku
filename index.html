@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <img class="album-cover album-back"/>
+    <div class="frost"></div>
+    <div id="content">
+      <div id="header">
+         <div>
+            <div id="song"></div>
+            <div id="artist"></div>
+         </div>
+         <img height="80px" class="album-cover" />
+      </div>
+      <div id="lyrics"></div>
+    </div
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    const songLabel = document.getElementById('song');
+    const artistLabel = document.getElementById('artist');
+    const albumCovers = document.getElementsByClassName('album-cover');
+    const lyricsDiv = document.getElementById('lyrics');
+    debugger;
+    const itunes = require('./itunes');
+    const geniusAPI = require('./geniusAPI');
+    debugger;
+    const setAlbumCovers = (url) => Array.prototype.map.call(albumCovers, (x)=>x.setAttribute("src", url));
+    const setLyrics = (lyrics) => lyricsDiv.innerHTML = lyrics;
+    const gotNewData = ({imgURL, lyrics}) => {
+      if (imgURL) setAlbumCovers(imgURL);
+      if (lyrics) setLyrics(lyrics);
+   }
+
+    itunes.on('playing', (songData) => {
+      songLabel.innerHTML = songData.name;
+      artistLabel.innerHTML = songData.artist;
+      geniusAPI.getSongData(songData, gotNewData);
+
+    });
+  </script>
+</html>
