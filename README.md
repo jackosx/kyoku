@@ -1,3 +1,15 @@
+Fork of Kyoku (Original README Below)
+===
+
+An Electron app. Displays a floating window with the lyrics of the current iTunes song.
+
+![Screenshot](http://i.imgur.com/NtMkBQv.jpg)
+
+
+I was looking to interface with iTunes somehow. Lim Chee Aun already wrote a module enabling Kyoku to get the current iTunes track, so I piggybacked off of that.
+
+
+
 Kyoku
 ===
 
