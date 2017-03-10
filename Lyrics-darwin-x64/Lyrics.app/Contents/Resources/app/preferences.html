@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<style>
+body{
+  font-family: system, -apple-system, '.SFNSText-Regular', 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  background-color: #E9E9E9;
+  padding: 10px;
+  -webkit-user-select: none;
+  cursor: default;
+}
+.segment label{
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  margin-right: 10px;
+}
+.segment .info{
+  margin-top: 5px;
+  margin-left: 135px;
+  font-size: 80%;
+}
+footer{
+  display: block;
+  font-size: 80%;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+</style>
+<form>
+  <div class="segment">
+    <label>Characters limit:</label> <input id="charsLimit" type="number" pattern="\d+" min="5" style="width: 4em">
+    <div class="info">
+      Set this to limit the number of characters of the current song title displayed. Set to no value for no limit.
+    </div>
+  </div>
+</form>
+<footer>
+  <a href="https://github.com/cheeaun/kyoku" rel="external">Kyoku</a> <span id="version"></span>, built by <a href="http://twitter.com/cheeaun" rel="external">@cheeaun</a>.
+</footer>
+<script>
+const electron = require('electron');
+const shell = electron.shell;
+const remote = electron.remote;
+var store = remote.getGlobal('store');
+
+document.addEventListener('click', function(e){
+  var target = e.target;
+  if (target.tagName.toLowerCase() == 'a' && target.rel == 'external'){
+    e.preventDefault();
+    shell.openExternal(target.href);
+  }
+}, false);
+
+var version = remote.getGlobal('app').getVersion();
+document.getElementById('version').innerHTML = version;
+
+$charsLimit = document.getElementById('charsLimit');
+$charsLimit.value = store.get('charsLimit') || 10;
+var updateCharsLimit = function(){
+  store.set('charsLimit', parseInt($charsLimit.value, 10));
+};
+$charsLimit.addEventListener('keyup', updateCharsLimit);
+$charsLimit.addEventListener('change', updateCharsLimit);
+</script>

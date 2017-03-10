@@ -35,10 +35,12 @@ body {
 
 #lyrics {
    white-space: pre-wrap;
+   box-sizing: border-box;
    line-height: 1.3em;
    font-size: .9em;
    height: 85vh;
    padding: 50px;
+   padding-top: 5vh;
    margin-left: auto;
    overflow: scroll;
 }

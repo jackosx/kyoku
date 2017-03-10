@@ -15,7 +15,7 @@ const getSongData  = ({name, artist}, finished) => {
          console.log(song);
          finished({imgURL: song.result.header_image_url});
          lyricist.song(song.result.id, (err, response) => {
-            finished({lyrics:response.lyrics});
+            finished({lyrics:response.lyrics.trim()});
          })
       }
    });
