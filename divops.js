@@ -27,9 +27,17 @@ const redraw = (target) => {
 }
 
 const fitToDims = (target, width, height) => {
+    while (target.offsetHeight < height) {
+        let lineHeight = getLineHeight(target);
+        let newHeight = (lineHeight + 1) + "px"
+        target.style.lineHeight = newHeight;
+        target.style.fontSize = newHeight;
+        redraw(target);
+
+    }
     while (target.offsetHeight > height) {
         let lineHeight = getLineHeight(target);
-        let newHeight = (lineHeight - 3) + "px"
+        let newHeight = (lineHeight - 1) + "px"
         target.style.lineHeight = newHeight;
         target.style.fontSize = newHeight;
         redraw(target);
